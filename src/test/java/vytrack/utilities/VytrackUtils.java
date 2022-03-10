@@ -48,4 +48,18 @@ public class VytrackUtils {
     }
 
 
+    public static void loginWithUsername(String username){
+
+        WebElement usernameInputBox = Driver.getDriver().findElement(By.xpath("//input[@name='_username']"));
+        usernameInputBox.sendKeys(username);
+
+        WebElement passwordInputBox = Driver.getDriver().findElement(By.xpath("//input[@name='_password']"));
+        passwordInputBox.sendKeys( ConfigurationReader.getProperty("password") );
+
+        WebElement loginButton = Driver.getDriver().findElement(By.xpath("//button[@name='_submit']"));
+        loginButton.click();
+
+    }
+
+
 }
