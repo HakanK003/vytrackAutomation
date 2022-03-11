@@ -14,8 +14,12 @@ import vytrack.utilities.VytrackUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class US58_SelectCheckboxes_Hakan extends TestBase {
+public class US_58_SelectCheckboxes_Hakan extends TestBase {
 
+    //Extended TestBase class to use @BeforeMethod, @AfterMethod and Singleton
+    //Added a lots of thread.sleep to see how it works and prevent test fails
+
+    //Used data provider to test with each username at one run
     @DataProvider(name="dataForTests")
     public Object[][] provideData(){
         return new Object[][]{
@@ -35,20 +39,24 @@ public class US58_SelectCheckboxes_Hakan extends TestBase {
     @Test(dataProvider = "dataForTests")
     public void test1_checkThreeColumns(String username){
 
+        //To use js ready methods created an actions object
         Actions actions = new Actions(Driver.getDriver());
 
         BrowserUtils.sleep(2);
 
+        //Login
         VytrackUtils.loginWithUsername( username );
 
         BrowserUtils.sleep(2);
 
+        //Locate fleet tab frame and move on it (using js method)
         WebElement fleetTabFrame = Driver.getDriver().findElement(By.xpath("//li[@class='dropdown dropdown-level-1'][1]"));
 
         actions.moveToElement(fleetTabFrame).perform();
 
         BrowserUtils.sleep(2);
 
+        //Locate vehicle costs tab frame and move on it then click it
         WebElement vehicleCostsTabFrame = Driver.getDriver().findElement(By.xpath("//li[@class='dropdown-menu-single-item' and .='Vehicle Costs']"));
 
         actions.moveToElement(vehicleCostsTabFrame).perform();
@@ -59,25 +67,31 @@ public class US58_SelectCheckboxes_Hakan extends TestBase {
 
         BrowserUtils.sleep(2);
 
+        //Created an arraylist to store expected columns titles
         ArrayList<String> expectedColumnsTitles = new ArrayList<>( Arrays.asList("TYPE", "TOTAL PRICE", "DATE") );
 
+        //Created an arraylist to store columns titles web elements
         ArrayList<WebElement> columnsTitlesWebElements = new ArrayList<>(Driver.getDriver().findElements(By.xpath("//thead[@class='grid-header']//th[contains(@class, 'shortenable-label')]")));
 
         BrowserUtils.sleep(2);
 
+        //Created an arraylist to store actual columns titles
         ArrayList<String> actualColumnsTitles = new ArrayList<>();
 
+        //Get each title web element then get the text (titles) and trim to get rid of extra spaces
         for (WebElement each : columnsTitlesWebElements) {
 
             actualColumnsTitles.add(each.getText().trim());
 
         }
 
+        //Print expected columns titles
         System.out.println("expectedColumnsTitles = " + expectedColumnsTitles);
 
+        //Print actual columns titles
         System.out.println("actualColumnsTitles = " + actualColumnsTitles);
 
-
+        //Assertion part
         Assert.assertEquals(actualColumnsTitles, expectedColumnsTitles);
 
     }
@@ -87,20 +101,24 @@ public class US58_SelectCheckboxes_Hakan extends TestBase {
     @Test(dataProvider = "dataForTests")
     public void test2_checkCheckboxes(String username){
 
+        //To use js ready methods created an actions object
         Actions actions = new Actions(Driver.getDriver());
 
         BrowserUtils.sleep(2);
 
+        //Login
         VytrackUtils.loginWithUsername( username );
 
         BrowserUtils.sleep(2);
 
+        //Locate fleet tab frame and move on it (using js method)
         WebElement fleetTabFrame = Driver.getDriver().findElement(By.xpath("//li[@class='dropdown dropdown-level-1'][1]"));
 
         actions.moveToElement(fleetTabFrame).perform();
 
         BrowserUtils.sleep(2);
 
+        //Locate vehicle costs tab frame and move on it then click it
         WebElement vehicleCostsTabFrame = Driver.getDriver().findElement(By.xpath("//li[@class='dropdown-menu-single-item' and .='Vehicle Costs']"));
 
         actions.moveToElement(vehicleCostsTabFrame).perform();
@@ -111,14 +129,17 @@ public class US58_SelectCheckboxes_Hakan extends TestBase {
 
         BrowserUtils.sleep(2);
 
+        //Located first checkbox then click it
         WebElement firstCheckbox = Driver.getDriver().findElement(By.xpath("//thead[@class='grid-header']//button[@data-toggle='dropdown']/input[@data-select]"));
 
         firstCheckbox.click();
 
+        //Located other checkboxes and stored then in an arraylist
         ArrayList<WebElement> otherCheckboxes = new ArrayList<>(Driver.getDriver().findElements(By.xpath("//input[@tabindex='-1']")));
 
         BrowserUtils.sleep(2);
 
+        //Check each checkbox if they are selected (Assertion part)
         for (WebElement eachCheckbox : otherCheckboxes) {
 
             Assert.assertTrue(eachCheckbox.isSelected());
