@@ -9,7 +9,7 @@ public class VytrackUtils {
 
     public static void loginAsDriver() {
 
-        Driver.getDriver().get(ConfigurationReader.getProperty("env1"));
+
         WebElement usernameInput = Driver.getDriver().findElement(By.xpath("//input[@id='prependedInput']"));
         usernameInput.sendKeys(ConfigurationReader.getProperty("driver_username"));
 
@@ -23,7 +23,7 @@ public class VytrackUtils {
 
 
     public static void loginAsStoreManager() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env1"));
+
         WebElement usernameInput = Driver.getDriver().findElement(By.xpath("//input[@id='prependedInput']"));
         usernameInput.sendKeys(ConfigurationReader.getProperty("store_manager_username"));
 
@@ -37,7 +37,7 @@ public class VytrackUtils {
     }
 
     public static void loginAsSalesManager() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("env1"));
+
         WebElement usernameInput = Driver.getDriver().findElement(By.xpath("//input[@id='prependedInput']"));
         usernameInput.sendKeys(ConfigurationReader.getProperty("sales_manager_username"));
 
