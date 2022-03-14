@@ -23,10 +23,13 @@ public class US_46_ModuleAccessLevel_Maxim extends TestBase {
     @DataProvider(name = "truckDriverLogin")
     public Object[][] driverData() {
         return new Object[][]{
-                {"user156", "UserUser123"},
-                {"user157", "UserUser123"},
-                {"user158", "UserUser123"},
-                {"user159", "UserUser123"},
+                {"user150", "UserUser123"},
+                {"user151", "UserUser123"},
+                {"user152", "UserUser123"},
+                {"user153", "UserUser123"},
+                {"user154", "UserUser123"},
+                {"user155", "UserUser123"},
+
 
         };
 
