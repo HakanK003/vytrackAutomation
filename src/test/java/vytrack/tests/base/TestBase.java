@@ -11,8 +11,9 @@ public abstract class TestBase {
     public void setUp(){
         Driver.getDriver().get(ConfigurationReader.getProperty("env1"));
     }
+
     @AfterMethod
     public void tearDown(){
-        Driver.closeDriver();
-    }
+       Driver.closeDriver();
+   }
 }
