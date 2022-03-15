@@ -60,11 +60,11 @@ public class US27_OdometerPage_Alena extends TestBase {
         return new Object[][]{
 
                 {"user150", "UserUser123"},
-                {"user151", "UserUser123"},
-                {"user152", "UserUser123"},
-                {"user153", "UserUser123"},
-                {"user154", "UserUser123"},
-                {"user155", "UserUser123"},
+              //  {"user151", "UserUser123"},
+             //   {"user152", "UserUser123"},
+             //   {"user153", "UserUser123"},
+             //   {"user154", "UserUser123"},
+             //   {"user155", "UserUser123"},
 
 
         };
@@ -87,11 +87,20 @@ public class US27_OdometerPage_Alena extends TestBase {
         BrowserUtils.sleep(3);
 
         WebElement defaultPage1 = Driver.getDriver().findElement(By.xpath("//input[@value=\"1\"]"));
-        //String actualResult = defaultPage1;
-        System.out.println(defaultPage1);
+        String actualResult = defaultPage1.getAttribute("value");
+        System.out.println(actualResult);
         String expectedResult = "1";
 
-        Assert.assertTrue(expectedResult.equals(defaultPage1.getText()));
+        Assert.assertEquals(actualResult,expectedResult);
+
+      /*  WebElement viewPerPage25 = Driver.getDriver().findElement(By.xpath("//span[@class='caret']"));
+        String actualResult25 = viewPerPage25.getText();
+        System.out.println(actualResult25);
+        String expectedResult25 = "25";
+
+        Assert.assertEquals(actualResult25,expectedResult25);*/
+
+
 
 
 
