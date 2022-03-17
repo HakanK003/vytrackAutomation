@@ -15,7 +15,7 @@ import vytrack.utilities.VytrackUtils;
 
 public class US_wail extends TestBase {
 
-
+//
     @Test
     public void testOne() {
 
@@ -53,6 +53,7 @@ public class US_wail extends TestBase {
         WebElement errorMessage = Driver.getDriver().findElement(By.xpath("//span[.='The value have not to be less than 1.']"));
         String expectedErrorMessage = "The value have not to be less than 1.";
         Assert.assertEquals(errorMessage.getText(), expectedErrorMessage);
+
 
 
     }
